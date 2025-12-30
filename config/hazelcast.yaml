@@ -1,0 +1,25 @@
+hazelcast:
+  cluster-name: seatunnel
+  network:
+    rest-api:
+      enabled: true
+      endpoint-groups:
+        CLUSTER_READ:
+          enabled: true
+        CLUSTER_WRITE:
+          enabled: true
+        HEALTH_CHECK:
+          enabled: true
+        DATA:
+          enabled: true
+    join:
+      multicast:
+        enabled: false
+      tcp-ip:
+        enabled: true
+        member-list:
+          - 127.0.0.1  # 這裡就是你要的「自己連向自己」
+    port:
+      auto-increment: false
+      port-count: 100
+      port: 5801

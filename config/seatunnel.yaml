@@ -1,0 +1,20 @@
+seatunnel:
+  engine:
+    checkpoint:
+      interval: 6000
+      timeout: 7000
+      storage:
+        type: hdfs
+        max-retained: 3
+        plugin-config:
+          storage.type: hdfs
+          fs.defaultFS: file:///opt/seatunnel/checkpoint_storage
+          
+    http:
+      enable-http: true
+      port: 8080
+      enable-dynamic-port: true
+      port-range: 100
+      enable-basic-auth: true
+      basic-auth-username: admin
+      basic-auth-password: admin123

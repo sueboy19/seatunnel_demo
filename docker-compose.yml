@@ -1,0 +1,29 @@
+services:
+  seatunnel:
+    image: apache/seatunnel:2.3.12
+    container_name: seatunnel-engine
+    ports:
+      - "5801:5801"    # REST API 埠
+      - "8080:8080"    # web ui 埠
+    volumes:
+      - ./config/hazelcast.yaml:/opt/seatunnel/config/hazelcast.yaml
+      - ./config/seatunnel.yaml:/opt/seatunnel/config/seatunnel.yaml
+      - ./config/log4j2.properties:/opt/seatunnel/config/log4j2.properties
+      - ./seatunnel/checkpoint_storage/:/opt/seatunnel/checkpoint_storage/
+      - ./lib/mssql-jdbc-13.2.1.jre8.jar:/opt/seatunnel/lib/mssql-jdbc-9.2.1.jre8.jar
+    environment:
+      - JAVA_OPTS=-Xms1g -Xmx2g     # 限制記憶體，防止爆掉
+      - SEATUNNEL_HOME=/opt/seatunnel
+      - ST_DOCKER_MEMBER_LIST=127.0.0.1:5801
+    command: ["/opt/seatunnel/bin/seatunnel-cluster.sh"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5801/hazelcast/rest/maps/cluster-state"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - OOXXOOXX
+      
+networks:
+  OOXXOOXX:
+    external: true

@@ -1,0 +1,26 @@
+curl -X POST http://localhost:5801/hazelcast/rest/maps/submit-job?jobName=SQLServer_to_Console \
+-H "Content-Type: application/json" \
+-d '
+{
+    "env": {
+        "job.mode": "BATCH",
+        "parallelism": 1
+    },
+    "source": [
+        {
+            "plugin_name": "Jdbc",
+            "driver": "com.microsoft.sqlserver.jdbc.SQLServerDriver",
+            "url": "jdbc:sqlserver://mssql:1433;databaseName=OOOOO;encrypt=false",
+            "username": "sa",
+            "password": "OOOOOOOOOOO",
+            "query": "SELECT TOP 1 1 as XXXXXX"
+        }
+    ],
+    "transform": [],
+    "sink": [
+        {
+            "plugin_name": "Console"
+        }
+    ]
+}
+'
