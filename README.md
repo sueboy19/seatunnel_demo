@@ -14,6 +14,13 @@ coker inspect DOCKER_ID
 ```
 讓 seatuneel container 認得運行的專案中的資料庫  
 
+## jdbc
+因為無法刪除，只好用新版取代舊版
+
+```
+- ./lib/mssql-jdbc-13.2.1.jre8.jar:/opt/seatunnel/lib/mssql-jdbc-9.2.1.jre8.jar
+```
+
 # config
 
 ## seatunnel.yaml
@@ -103,4 +110,5 @@ XXXXXX 換成真實使用的
 
 ## 實際執行
 到 webui 看執行結果  
+
 或是 進到 docker container 內的 logs 找 ConsoleSinkWriter  
