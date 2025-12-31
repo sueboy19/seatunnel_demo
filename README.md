@@ -4,13 +4,13 @@
 
 ## network 
 OOXXOOXX 自行取代成真正要進入的 network  
-例：現在有一個運行的專案，也是用 docker compose 啟動，可以用  
+例：現在有一個運行的專案，也是用 docker compose 啟動，可以用這方式加入該專案network  
 ```
 docker network ls
 
 docker network inspect OOXXOOXX
 
-coker inspect DOCKER_ID
+dcoker inspect DOCKER_ID
 ```
 讓 seatuneel container 認得運行的專案中的資料庫  
 
@@ -112,3 +112,4 @@ XXXXXX 換成真實使用的
 到 webui 看執行結果  
 
 或是 進到 docker container 內的 logs 找 ConsoleSinkWriter  
+
